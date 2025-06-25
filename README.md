@@ -51,7 +51,7 @@ cd Face_detection
 
 ```bash
 python -m venv venv
-source venv/bin/activate      # Windows: venv\Scripts\activate
+venv\Scripts\activate #windows
 ```
 
 3. **Install Dependencies**
