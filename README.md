@@ -43,8 +43,8 @@ face_detection/
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/<your_username>/face_detection.git
-cd face_detection
+git clone https://github.com/PuneethPavuluri/Face_detection.git
+cd Face_detection
 ```
 
 2. **Create and Activate Virtual Environment**
