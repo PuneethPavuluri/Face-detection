@@ -1,3 +1,4 @@
+import os
 import cv2
 from ultralytics import YOLO
 import insightface
@@ -9,6 +10,46 @@ import json
 import numpy as np
 from loguru import logger
 from database import DatabaseManager
+import sqlite3
+import glob
+
+def clear_log_images():
+    folders = ["logs/entries", "logs/exits"]
+
+    for folder in folders:
+        if os.path.exists(folder):
+            files = glob.glob(f"{folder}/**/*.jpg", recursive=True)
+            for f in files:
+                os.remove(f)
+            print(f"✅ Cleared {len(files)} images in {folder}")
+        else:
+            print(f"⚠️ Folder does not exist: {folder}")
+
+def get_unique_face_count(db_path):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("SELECT DISTINCT face_id FROM face_events")
+    unique_faces = cursor.fetchall()
+    conn.close()
+    return len(unique_faces)
+# 🔹 Clear DB & Logs Function
+
+def clear_database_and_logs():
+    # Delete database file if it exists
+    if os.path.exists("face_tracker.db"):
+        os.remove("face_tracker.db")
+        print("✅ Deleted: face_tracker.db")
+    
+    # Delete entries log folder
+    if os.path.exists("logs/entries"):
+        os.system("rm -rf logs/entries")
+        print("✅ Deleted: logs/entries")
+
+    # Delete exits log folder
+    if os.path.exists("logs/exits"):
+        os.system("rm -rf logs/exits")
+        print("✅ Deleted: logs/exits")
+
 
 class FaceTracker:
     def __init__(self, config_path="config.json"):
@@ -246,11 +287,18 @@ class FaceTracker:
     def cleanup(self):
         self.db.close()
         logger.info("Processing completed")
+      # make sure already imported at the top
+
+  
 
 if __name__ == "__main__":
+    # clear_log_images()
+    # clear_database_and_logs()
     tracker = FaceTracker()
-    
+     
     # Choose ONE of these video sources:
     # tracker.process_video(0)                   # Webcam
     tracker.process_video("videos/vid1.mp4")  # Video file
     # tracker.process_video("rtsp://...")      # RTSP stream
+    unique_faces = tracker.db.get_unique_visitors()
+    print(f"\n Total Unique Faces Detected: {unique_faces}")
