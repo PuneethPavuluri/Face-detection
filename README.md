@@ -138,7 +138,7 @@ tracker.process_video(0)  # Webcam
 * Face must be reasonably large and clear for reliable recognition (min height/width \~30px)
 * Entry is logged only on first-time detection in a session
 * Exit is triggered when a tracked face is no longer detected for a certain number of frames
-* All embeddings are cached temporarily per session (not persisted)
+*Embeddings are cached temporarily in memory during runtime for fast access, but they are also persisted in the database during entry events.
 
 ---
 
