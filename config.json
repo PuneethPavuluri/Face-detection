@@ -1,0 +1,6 @@
+{
+    "insightface_model_name": "buffalo_l",
+    "max_tracking_age": 30,
+    "detection_skip_frames": 5,
+    "min_confidence": 0.7
+}

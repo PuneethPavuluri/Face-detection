@@ -1,0 +1,12 @@
+﻿venv/
+__pycache__/
+*.log
+logs/
+*.jpg
+*.png
+*.mp4
+*.db
+.DS_Store
+*.pt
+face_tracker.db
+events.log
