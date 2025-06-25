@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Intelligent Face Tracker with Auto-Registration and Visitor Counting
 
 ## Overview
@@ -17,3 +18,6 @@ This system provides real-time face detection, tracking, and recognition from vi
    ```bash
    git clone https://github.com/PuneethPavuluri/Face-detection.git
    cd face_detection
+=======
+# Face-detection
+>>>>>>> 4e8948bdddd2ef819e57e62f7275508bf83ad631
